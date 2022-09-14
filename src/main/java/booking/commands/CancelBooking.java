@@ -2,7 +2,10 @@ package booking.commands;
 
 import booking.console.IOConsole;
 import booking.controller.BookingController;
+import booking.model.Passenger;
 import booking.model.User;
+
+import java.util.Iterator;
 
 public class CancelBooking {
     private final BookingController controller;

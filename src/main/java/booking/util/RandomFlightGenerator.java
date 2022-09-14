@@ -6,12 +6,11 @@ import booking.model.Flight;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class RandomFlightGenerator {
     private static final Random random = new Random();
+    private int flightID = 1;
 
 
     public static Airline randomAirline() {
@@ -24,7 +23,7 @@ public class RandomFlightGenerator {
 
     public LocalDate randomDate() {
         LocalDate start = LocalDate.now();
-        return LocalDate.of(2022, start.getMonth().getValue() + random.nextInt(3), random.nextInt(25) + 1);
+        return LocalDate.of(2022, start.getMonth().getValue() + random.nextInt(3) + 1, random.nextInt(28) + 1);
     }
 
     public LocalTime randomTime() {
@@ -35,6 +34,7 @@ public class RandomFlightGenerator {
         }
         return LocalTime.of(randomHour, randomMinute);
     }
+
     private Flight generator(int count) {
         Airline airline = randomAirline();
         Cities cityFrom = randomCity();
@@ -42,7 +42,7 @@ public class RandomFlightGenerator {
         LocalDate date = randomDate();
         LocalTime time = randomTime();
         int id = random.nextInt(count) + 1;
-        return new Flight(id, airline, cityFrom, cityTo, date, time);
+        return new Flight(flightID++, airline, cityFrom, cityTo, date, time);
     }
 
     public List<Flight> randomFlights(int count) {
@@ -54,6 +54,14 @@ public class RandomFlightGenerator {
         }
         return flights;
     }
+
+    public List<Flight> sortedFlight(int count) {
+        List<Flight> flights = randomFlights(count);
+        flights.sort(sortByDate);
+        return new ArrayList<>(flights);
+    }
+
+    private final Comparator<Flight> sortByDate = Comparator.comparing(Flight::date);
 
 
 }

@@ -2,11 +2,13 @@ package booking.database;
 
 import booking.model.Booking;
 import booking.model.Flight;
+import booking.model.Passenger;
 import booking.model.User;
 import booking.util.RandomFlightGenerator;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class FileBase {
@@ -14,7 +16,7 @@ public class FileBase {
     private final File fileU = new File("users.bin");
     private final File fileB = new File("bookings.bin");
 
-    private final List<Flight> flights = new ArrayList<>();
+    private  List<Flight> flights = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Booking> bookings = new ArrayList<>();
 
@@ -35,7 +37,7 @@ public class FileBase {
         if (fileF.exists()) {
             loadData(fileF, flights);
         } else {
-            flights.addAll(fg.randomFlights(30));
+            flights.addAll(fg.sortedFlight(50));
             saveData(fileF, flights);
         }
         if (fileU.exists()) {

@@ -8,6 +8,7 @@ import booking.model.Flight;
 import booking.model.Passenger;
 import booking.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,8 +30,9 @@ public class MakeBooking {
         int counter = 0;
         Flight flight = getFlight();
         if (flight != null) {
+            List<Passenger> passengers = new ArrayList<>(flight.getPassengers());
             addPassengers(flight);
-            Booking booking = new Booking(++counter, user, flight, flight.getPassengers());
+            Booking booking = new Booking(++counter, user, flight, passengers);
             controllerB.doReservation(booking);
         } else {
             c.print("Flight to corresponded destination is not exist\n");
