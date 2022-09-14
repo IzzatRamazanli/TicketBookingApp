@@ -16,6 +16,7 @@ public class ViewFlight {
     }
 
     public void viewingAllFlights() {
+        c.print("\nTIME TABLE FOR AVAILABLE FLIGHTS\n");
         controller.getAllFlights().forEach(System.out::println);
     }
 
