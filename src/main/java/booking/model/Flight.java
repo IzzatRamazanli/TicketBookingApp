@@ -41,6 +41,7 @@ public record Flight(int id, Airline airline, Cities cityFrom, Cities cityTo, Lo
             passengers.add(p);
         }
     }
+
     private Optional<Passenger> find(Passenger p) {
         if (p == null) return Optional.empty();
         return passengers.stream()
@@ -48,9 +49,6 @@ public record Flight(int id, Airline airline, Cities cityFrom, Cities cityTo, Lo
                 .findFirst();
     }
 
-    public int getId() {
-        return id;
-    }
 
     public List<Passenger> getPassengers() {
         return passengers;
@@ -58,9 +56,9 @@ public record Flight(int id, Airline airline, Cities cityFrom, Cities cityTo, Lo
 
     @Override
     public String toString() {
-        return "\nID: %3d || %5s (%s) ---> %s (%s)  || %s  %s || %s"
+        return "\nID: %3d || %5s (%s) ---> %s (%s)  || %s  %s || %s (%s)"
                 .formatted(id, cityFrom, cityFrom.getAirportCode(), cityTo, cityTo.getAirportCode(),
-                        getFlightDate(), getFlightTime(), airline) + "\n" +
+                        getFlightDate(), getFlightTime(), airline, airline.getCode()) + "\n" +
                 "_________________________________________________________________________________________";
     }
 

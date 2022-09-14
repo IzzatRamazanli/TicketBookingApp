@@ -9,10 +9,6 @@ public record Passenger(int id, String firstName, String lastName) implements Se
         id++;
     }
 
-    public int getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
         return "PASSENGER --> FIRSTNAME: %s  LASTNAME: %s\n".formatted(firstName, lastName);

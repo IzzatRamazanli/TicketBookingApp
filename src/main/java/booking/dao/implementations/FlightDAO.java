@@ -44,13 +44,13 @@ public class FlightDAO implements DAO<Flight>, Searcher<Flight> {
     @Override
     public boolean delete(int id) {
         if (findById(id).isEmpty()) return false;
-        return fb.getFlights().removeIf(x -> id == x.getId());
+        return fb.getFlights().removeIf(x -> id == x.id());
     }
 
     @Override
     public Optional<Flight> findById(int id) {
         return fb.getFlights().stream()
-                .filter(flight -> id == flight.getId())
+                .filter(flight -> id == flight.id())
                 .findFirst();
     }
 

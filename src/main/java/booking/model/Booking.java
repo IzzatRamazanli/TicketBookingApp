@@ -13,10 +13,6 @@ public record Booking(int id, User user, Flight flight, List<Passenger> passenge
         user.addBooking(this);
     }
 
-    public int getId() {
-        return id;
-    }
-
     public static String getBookTime() {
         return bookTime;
     }
@@ -31,7 +27,7 @@ public record Booking(int id, User user, Flight flight, List<Passenger> passenge
         final StringBuilder[] sb = {new StringBuilder("")};
         flight.getPassengers().forEach(passenger ->
                 sb[0] = sb[0].append("PASSENGER %d --> FIRSTNAME: %s | LASTNAME: %s\n"
-                        .formatted(passenger.getId(), passenger.firstName(), passenger.lastName())));
+                        .formatted(passenger.id(), passenger.firstName(), passenger.lastName())));
         return sb[0].toString();
     }
 }

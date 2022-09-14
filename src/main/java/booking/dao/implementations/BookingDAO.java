@@ -44,13 +44,13 @@ public class BookingDAO implements DAO<Booking>, Searcher<Booking> {
     @Override
     public boolean delete(int id) {
         if (findById(id).isEmpty()) return false;
-        return fb.getBookings().removeIf(x -> id == x.getId());
+        return fb.getBookings().removeIf(x -> id == x.id());
     }
 
     @Override
     public Optional<Booking> findById(int id) {
         return fb.getBookings().stream()
-                .filter(booking -> id == booking.getId())
+                .filter(booking -> id == booking.id())
                 .findFirst();
     }
 
