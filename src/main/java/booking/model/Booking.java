@@ -3,11 +3,13 @@ package booking.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public record Booking(int id, User user, Flight flight, List<Passenger> passengers) implements Serializable {
     private static final long serialVersionUID = 1L;
     private static String bookTime;
+
     public Booking {
         bookTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         user.addBooking(this);

@@ -38,7 +38,10 @@ public class BookingService {
 
     public boolean cancelBooking(Booking b, User user) {
         Optional<Booking> find = getBookingsByUser(user).stream().filter(x -> x.equals(b)).findFirst();
-        if (find.isPresent()) user.getBookings().remove(b);
+        if (find.isPresent()) {
+            user.getBookings().remove(b);
+            b.flight().getPassengers().removeAll(b.flight().getPassengers());
+        }
         return dao.delete(b);
     }
 
