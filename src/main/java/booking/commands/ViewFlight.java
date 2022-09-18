@@ -33,6 +33,7 @@ public class ViewFlight {
         List<Flight> flights = searchFlight();
         if (flights.size() == 0) {
             c.print("Flight to corresponded destination is not exist\n");
+            getFlight();
         } else {
             flights.forEach(System.out::println);
         }

@@ -37,6 +37,7 @@ public class MakeBooking {
             controllerB.doReservation(booking);
         } else {
             c.print("Flight to corresponded destination is not exist\n");
+            makeBooking(user);
         }
     }
 
