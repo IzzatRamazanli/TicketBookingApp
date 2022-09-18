@@ -24,12 +24,10 @@ public class MakeBooking {
 
     private static final IOConsole c = new IOConsole();
 
-
     public void makeBooking(User user) {
         Flight flight = getFlight(user);
         if (flight != null) {
-            List<Passenger> passengers = new ArrayList<>(addPassengers(flight));
-            Booking booking = new Booking(bookingID++, user, flight, passengers);
+            Booking booking = new Booking(bookingID++, user, flight, addPassengers(flight));
             if (controllerB.doReservation(booking)) {
                 c.print("\nReservation completed, have a good journey");
             }
@@ -40,16 +38,17 @@ public class MakeBooking {
     }
 
     private List<Passenger> addPassengers(Flight flight) {
+        List<Passenger> list = new ArrayList<>();
         c.print("Enter passengers count for reserving seats: ");
         int seats = getNumber();
         if (seats > 0) {
             flight.setSeats(seats);
             for (int i = 1; i <= flight.getSeats(); i++) {
                 Passenger p = passengerInfo(i);
-                flight.addPassenger(p);
+                list.add(p);
             }
         }
-        return flight.getPassengers();
+        return list;
     }
 
     private Passenger passengerInfo(int i) {

@@ -27,7 +27,7 @@ public record Booking(int id, User user, Flight flight, List<Passenger> passenge
 
     private String getPrettyPassengers() {
         final StringBuilder[] sb = {new StringBuilder("")};
-        flight.getPassengers().forEach(passenger ->
+        passengers.forEach(passenger ->
                 sb[0] = sb[0].append("PASSENGER %d --> FIRSTNAME: %s | LASTNAME: %s\n"
                         .formatted(passenger.id(), passenger.firstName(), passenger.lastName())));
         return sb[0].toString();
