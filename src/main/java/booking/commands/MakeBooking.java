@@ -10,12 +10,14 @@ import booking.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class MakeBooking {
     private final BookingController controllerB;
     private final ViewFlight flight;
     private final FlightController controllerF;
+    private int bookingID = 1;
 
     public MakeBooking(BookingController controllerB, ViewFlight flight, FlightController controller) {
         this.controllerB = controllerB;
@@ -27,12 +29,11 @@ public class MakeBooking {
 
 
     public void makeBooking(User user) {
-        int counter = 0;
         Flight flight = getFlight();
         if (flight != null) {
             List<Passenger> passengers = new ArrayList<>(flight.getPassengers());
             addPassengers(flight);
-            Booking booking = new Booking(++counter, user, flight, passengers);
+            Booking booking = new Booking(bookingID++, user, flight, passengers);
             controllerB.doReservation(booking);
         } else {
             c.print("Flight to corresponded destination is not exist\n");
@@ -45,13 +46,13 @@ public class MakeBooking {
         if (seats > 0) {
             flight.setSeats(seats);
             for (int i = 1; i <= flight.getSeats(); i++) {
-                Passenger p = passengerInfo(flight, i);
+                Passenger p = passengerInfo(i);
                 flight.addPassenger(p);
             }
         }
     }
 
-    private Passenger passengerInfo(Flight flight, int i) {
+    private Passenger passengerInfo(int i) {
         String fn = getName(i);
         String sn = getSurname(i);
         return new Passenger(i - 1, fn, sn);
@@ -74,13 +75,26 @@ public class MakeBooking {
         List<Flight> flights = this.flight.searchFlight();
         flights.forEach(System.out::println);
         if (flights.size() > 0) {
-            c.print("\nSelect flight from menu(Enter flight ID): ");
-            int id = getNumber();
-            if (id > 0) {
-                return controllerF.getFlight(id);
+            Flight f = selectFlight(flights);
+            if (f == null) {
+                return getFlight();
+            } else {
+                return f;
             }
         }
         return null;
+    }
+
+    public Flight selectFlight(List<Flight> flights) {
+        c.print("\nSelect flight from menu(Enter flight ID): ");
+        int id = getNumber();
+        Optional<Flight> find = flights.stream().filter(x -> x.id() == id).findFirst();
+        if (id > 0 && find.isPresent()) {
+            return controllerF.getFlight(id);
+        } else {
+            c.print("Entered ID is not exist on menu, try again!\n");
+            return null;
+        }
     }
 
     private int getNumber() {
