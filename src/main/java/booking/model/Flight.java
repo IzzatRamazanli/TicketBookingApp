@@ -12,11 +12,7 @@ public record Flight(int id, Airline airline, Cities cityFrom, Cities cityTo, Lo
                      LocalTime time) implements Serializable {
     private static final long serialVersionUID = 1L;
     private static int seats;
-    private static List<Passenger> passengers;
 
-    public Flight {
-        passengers = new ArrayList<>();
-    }
 
     public String getFlightTime() {
         return time.format(DateTimeFormatter.ofPattern("HH:mm"));
@@ -32,26 +28,6 @@ public record Flight(int id, Airline airline, Cities cityFrom, Cities cityTo, Lo
 
     public int getSeats() {
         return seats;
-    }
-
-    public void addPassenger(Passenger p) {
-        if (find(p).isPresent()) {
-            System.out.println("Passenger already exist");
-        } else {
-            passengers.add(p);
-        }
-    }
-
-    private Optional<Passenger> find(Passenger p) {
-        if (p == null) return Optional.empty();
-        return passengers.stream()
-                .filter(x -> x.firstName().equals(p.firstName()) && x.lastName().equals(p.lastName()))
-                .findFirst();
-    }
-
-
-    public List<Passenger> getPassengers() {
-        return passengers;
     }
 
     @Override
