@@ -70,7 +70,7 @@ public class BookingApp {
             }
             case "4" -> {
                 if (user.getBookings().size() > 0) {
-                    cancelBooking.cancelBooking(user);
+                    cancelBooking.cancelBooking(user, booking);
                 } else console.print("\nNo any booking for cancelling\n");
             }
             case "5" -> {

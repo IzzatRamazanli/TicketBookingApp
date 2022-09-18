@@ -2,10 +2,8 @@ package booking.commands;
 
 import booking.console.IOConsole;
 import booking.controller.BookingController;
-import booking.model.Passenger;
 import booking.model.User;
 
-import java.util.Iterator;
 
 public class CancelBooking {
     private final BookingController controller;
@@ -15,15 +13,19 @@ public class CancelBooking {
         this.controller = controller;
     }
 
-    public void cancelBooking(User user) {
+    public void cancelBooking(User user, MakeBooking mk) {
         c.print("Your bookings: \n");
         user.getBookings().forEach(System.out::println);
         c.print("\nEnter reservation ID to cancellation: ");
         int id = getId();
-        if (id > 0) {
+        if (id > 0 && user.getBookings().size() + 1 > id) {
             if (controller.cancelBooking(controller.getBooking(id), user)) {
+                mk.setBookingID(1);
                 c.print("\nReservation successfully canceled!\n");
             } else c.print("\nSomething went wrong\n");
+        } else {
+            c.print("Entered ID is not correct!\n");
+            cancelBooking(user, mk);
         }
     }
 
