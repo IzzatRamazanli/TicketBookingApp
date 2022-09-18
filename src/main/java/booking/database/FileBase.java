@@ -16,7 +16,7 @@ public class FileBase {
     private final File fileU = new File("users.bin");
     private final File fileB = new File("bookings.bin");
 
-    private  List<Flight> flights = new ArrayList<>();
+    private List<Flight> flights = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Booking> bookings = new ArrayList<>();
 
@@ -30,6 +30,23 @@ public class FileBase {
 
     public List<Booking> getBookings() {
         return bookings;
+    }
+
+    private void saveData(File file, List list) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(list);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void loadData(File file, List list) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+            list.addAll((List) in.readObject());
+        } catch (IOException | ClassNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     public void setUp() {
@@ -52,23 +69,6 @@ public class FileBase {
         saveData(fileU, users);
         saveData(fileB, bookings);
         saveData(fileF, flights);
-    }
-
-    private void saveData(File file, List list) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-            oos.writeObject(list);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private void loadData(File file, List list) {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-            list.addAll((List) in.readObject());
-        } catch (IOException | ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
     }
 
 }
