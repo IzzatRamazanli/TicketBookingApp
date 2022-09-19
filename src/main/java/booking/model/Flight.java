@@ -13,7 +13,6 @@ public record Flight(int id, Airline airline, Cities cityFrom, Cities cityTo, Lo
     private static final long serialVersionUID = 1L;
     private static int seats;
 
-
     public String getFlightTime() {
         return time.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
