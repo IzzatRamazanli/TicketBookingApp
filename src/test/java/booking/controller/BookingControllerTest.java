@@ -37,13 +37,31 @@ class BookingControllerTest {
 
     @Test
     void testGetAllBookings() {
-       controller.doReservation(booking);
+        controller.doReservation(booking);
         assertEquals(1, controller.getAllBookings().size());
     }
 
     @Test
-    void testGetBookingById(){
+    void testGetBookingById() {
+        controller.doReservation(booking);
+        assertEquals(booking, controller.getBooking(3));
+    }
 
+    @Test
+    void testDoReservation() {
+        assertTrue(controller.doReservation(booking));
+    }
+
+    @Test
+    void testGetBookingByUser() {
+        controller.doReservation(booking);
+        assertEquals(controller.getAllBookings(), user.getBookings());
+    }
+
+    @Test
+    void testCancelBooking() {
+        controller.doReservation(booking);
+        assertTrue(controller.cancelBooking(booking, user));
     }
 
 
