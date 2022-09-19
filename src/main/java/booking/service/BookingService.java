@@ -16,6 +16,10 @@ public class BookingService {
         this.dao = dao;
     }
 
+    public List<Booking> getAllBookings() {
+        return dao.getAll();
+    }
+
     public boolean doReservation(Booking booking) {
         return dao.create(booking);
     }
@@ -28,12 +32,6 @@ public class BookingService {
         return dao.getAll().stream()
                 .filter(booking -> booking.user().equals(user))
                 .toList();
-    }
-
-    public boolean cancelBooking(int id, User user) {
-        Optional<Booking> find = user.getBookings().stream().filter(x -> id == x.id()).findFirst();
-        if (find.isPresent()) user.getBookings().remove(id);
-        return dao.delete(id);
     }
 
     public boolean cancelBooking(Booking b, User user) {

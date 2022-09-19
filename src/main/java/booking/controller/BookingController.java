@@ -11,6 +11,10 @@ import java.util.List;
 public class BookingController {
     private final BookingService service;
 
+    public List<Booking> getAllBookings() {
+        return service.getAllBookings();
+    }
+
     public BookingController(BookingService service) {
         this.service = service;
     }
@@ -25,10 +29,6 @@ public class BookingController {
 
     public List<Booking> getBookingsByUser(User user) {
         return service.getBookingsByUser(user);
-    }
-
-    public boolean cancelBooking(int id, User user) {
-        return service.cancelBooking(id, user);
     }
 
     public boolean cancelBooking(Booking b, User user) {
