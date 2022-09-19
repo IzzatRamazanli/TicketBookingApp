@@ -16,7 +16,7 @@ public class FileBase {
     private final File fileU = new File("users.bin");
     private final File fileB = new File("bookings.bin");
 
-    private List<Flight> flights = new ArrayList<>();
+    private final List<Flight> flights = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Booking> bookings = new ArrayList<>();
 

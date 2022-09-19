@@ -11,12 +11,12 @@ import java.util.List;
 public class BookingController {
     private final BookingService service;
 
-    public List<Booking> getAllBookings() {
-        return service.getAllBookings();
-    }
-
     public BookingController(BookingService service) {
         this.service = service;
+    }
+
+    public List<Booking> getAllBookings() {
+        return service.getAllBookings();
     }
 
     public boolean doReservation(Booking booking) {
