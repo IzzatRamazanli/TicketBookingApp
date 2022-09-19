@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public record User(String userName, String password) implements Serializable {
+public record User(int id, String userName, String password) implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static int id = 0;
     private static List<Booking> bookings;
 
     public User {
         bookings = new ArrayList<>();
-        id++;
     }
 
     public void addBooking(Booking b) {
@@ -28,10 +26,6 @@ public record User(String userName, String password) implements Serializable {
         return bookings.stream()
                 .filter(x -> x.equals(b))
                 .findFirst();
-    }
-
-    public int getId() {
-        return id;
     }
 
     public List<Booking> getBookings() {

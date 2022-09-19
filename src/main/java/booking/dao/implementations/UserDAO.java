@@ -43,13 +43,13 @@ public class UserDAO implements DAO<User>, Searcher<User> {
     @Override
     public boolean delete(int id) {
         if (findById(id).isEmpty()) return false;
-        return fb.getUsers().removeIf(x -> id == x.getId());
+        return fb.getUsers().removeIf(x -> id == x.id());
     }
 
     @Override
     public Optional<User> findById(int id) {
         return fb.getUsers().stream()
-                .filter(user -> id == user.getId())
+                .filter(user -> id == user.id())
                 .findFirst();
     }
 

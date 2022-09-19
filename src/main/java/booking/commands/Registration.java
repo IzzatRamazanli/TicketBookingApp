@@ -7,6 +7,7 @@ import booking.model.User;
 
 public class Registration {
     private final UserController controller;
+    private int userID = 1;
 
     public Registration(UserController controller) {
         this.controller = controller;
@@ -20,13 +21,13 @@ public class Registration {
         } else c.print("\nRegistration failed!");
     }
 
-    private static User getNewUser() {
+    private User getNewUser() {
         String userName = getUserName();
         String password = getPassword();
-        return new User(userName, password);
+        return new User(userID++, userName, password);
     }
 
-    private static String getUserName() {
+    private String getUserName() {
         c.print("Enter username (at least 4 character): ");
         String userName = c.readLn();
         if (userName.length() > 3) {
@@ -34,7 +35,7 @@ public class Registration {
         } else return getUserName();
     }
 
-    private static String getPassword() {
+    private String getPassword() {
         c.print("Enter password (at least 4 character): ");
         String password = c.readLn();
         if (password.length() > 3) {
