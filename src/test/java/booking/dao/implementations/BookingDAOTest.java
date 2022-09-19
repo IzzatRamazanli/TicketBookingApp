@@ -14,7 +14,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookingDAOTest {
-    private FileBase fb;
     private BookingDAO dao;
     private User user;
     private Flight flight;
@@ -22,7 +21,7 @@ class BookingDAOTest {
 
     @BeforeEach
     void setUp() {
-        fb = new FileBase();
+        FileBase fb = new FileBase();
         fb.setUp();
         dao = new BookingDAO(fb);
         passengers = new ArrayList<>(List.of(new Passenger(1, "Izzat", "Ramazanli")));
@@ -33,7 +32,7 @@ class BookingDAOTest {
     @Test
     void testGetAll() {
         Booking booking = new Booking(1, user, flight, passengers);
-        fb.getBookings().add(booking);
+        dao.create(booking);
         assertEquals(1, dao.getAll().size());
     }
 

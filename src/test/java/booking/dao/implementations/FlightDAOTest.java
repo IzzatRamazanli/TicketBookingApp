@@ -13,14 +13,13 @@ import java.time.LocalTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FlightDAOTest {
-    private FileBase fb;
     private Flight flight;
     private Flight flight1;
     private FlightDAO dao;
 
     @BeforeEach
     void setUp() {
-        fb = new FileBase();
+        FileBase fb = new FileBase();
         fb.setUp();
         dao = new FlightDAO(fb);
         flight = fb.getFlights().get(0);
