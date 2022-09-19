@@ -20,7 +20,7 @@ class BookingDAOTest {
     private List<Passenger> passengers;
 
     @BeforeEach
-    void setUp() {
+    void before() {
         FileBase fb = new FileBase();
         fb.setUp();
         dao = new BookingDAO(fb);

@@ -18,7 +18,7 @@ class FlightDAOTest {
     private FlightDAO dao;
 
     @BeforeEach
-    void setUp() {
+    void before() {
         FileBase fb = new FileBase();
         fb.setUp();
         dao = new FlightDAO(fb);
