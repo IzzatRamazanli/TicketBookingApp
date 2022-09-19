@@ -11,6 +11,7 @@ import java.util.Optional;
 public record Flight(int id, Airline airline, Cities cityFrom, Cities cityTo, LocalDate date,
                      LocalTime time) implements Serializable {
     private static final long serialVersionUID = 1L;
+
     private static int seats;
 
     public String getFlightTime() {
