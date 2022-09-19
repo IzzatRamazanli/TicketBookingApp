@@ -16,7 +16,7 @@ public class Registration {
 
     public void register() {
         if (controller.registration(getNewUser())) {
-            c.print("\nRegistration completed");
+            c.print("\nRegistration successfully completed");
         } else c.print("\nRegistration failed!");
     }
 
@@ -25,6 +25,7 @@ public class Registration {
         String password = getPassword();
         return new User(userName, password);
     }
+
     private static String getUserName() {
         c.print("Enter username (at least 4 character): ");
         String userName = c.readLn();
@@ -32,6 +33,7 @@ public class Registration {
             return userName;
         } else return getUserName();
     }
+
     private static String getPassword() {
         c.print("Enter password (at least 4 character): ");
         String password = c.readLn();

@@ -13,19 +13,19 @@ public class CancelBooking {
         this.controller = controller;
     }
 
-    public void cancelBooking(User user, MakeBooking mk) {
+    public void cancelBooking(User user, MakeBooking booking) {
         c.print("Your bookings: \n");
         user.getBookings().forEach(System.out::println);
         c.print("\nEnter reservation ID to cancellation: ");
         int id = getId();
         if (id > 0 && user.getBookings().size() + 1 > id) {
             if (controller.cancelBooking(controller.getBooking(id), user)) {
-                mk.setBookingID(1);
+                booking.setBookingID(1);
                 c.print("\nReservation successfully canceled!\n");
             } else c.print("\nSomething went wrong\n");
         } else {
             c.print("Entered ID is not correct!\n");
-            cancelBooking(user, mk);
+            cancelBooking(user, booking);
         }
     }
 

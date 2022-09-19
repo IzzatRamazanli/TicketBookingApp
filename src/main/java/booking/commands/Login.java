@@ -22,13 +22,14 @@ public class Login {
         c.print("PASSWORD: ");
         String password = c.readLn();
         if (!controller.login(userName, password)) {
-            c.print("Wrong password or username");
+            c.print("Wrong password or username, try again!\n");
+            return login();
         } else {
             Iterator<User> iterator = controller.getAllUsers().iterator();
             while (iterator.hasNext()) {
                 u = iterator.next();
                 if (u.userName().equals(userName) && u.password().equals(password)) {
-                    c.print("\nWELCOME " + userName.toUpperCase()+"\n");
+                    c.print("\nWELCOME " + userName.toUpperCase() + "\n");
                     return u;
                 }
             }

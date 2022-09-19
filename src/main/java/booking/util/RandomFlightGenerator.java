@@ -11,8 +11,6 @@ import java.util.*;
 public class RandomFlightGenerator {
     private static final Random random = new Random();
     private int flightID = 1;
-
-
     public static Airline randomAirline() {
         return Airline.values()[random.nextInt(Airline.values().length)];
     }
