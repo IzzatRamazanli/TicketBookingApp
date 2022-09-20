@@ -13,7 +13,6 @@ public record Booking(int id, User user, Flight flight, List<Passenger> passenge
 
     public Booking {
         bookTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        user.addBooking(this);
     }
 
     @SuppressWarnings("all")

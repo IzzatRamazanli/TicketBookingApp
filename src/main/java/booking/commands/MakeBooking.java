@@ -31,6 +31,7 @@ public class MakeBooking {
         if (flight != null) {
             Booking booking = new Booking(bookingID++, user, flight, addPassengers(flight));
             if (controllerB.doReservation(booking)) {
+                user.addBooking(booking);
                 c.print("\nReservation completed, have a good journey");
             }
         } else {
