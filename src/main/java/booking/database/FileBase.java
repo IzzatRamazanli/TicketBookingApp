@@ -2,13 +2,10 @@ package booking.database;
 
 import booking.model.Booking;
 import booking.model.Flight;
-import booking.model.Passenger;
 import booking.model.User;
 import booking.util.RandomFlightGenerator;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class FileBase {
