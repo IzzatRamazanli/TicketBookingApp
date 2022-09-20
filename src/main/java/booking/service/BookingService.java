@@ -2,10 +2,7 @@ package booking.service;
 
 import booking.dao.implementations.BookingDAO;
 import booking.model.Booking;
-import booking.model.Passenger;
 import booking.model.User;
-
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 

@@ -7,18 +7,19 @@ public class MainMenu {
     private static final Console c = new IOConsole();
 
     public static void display() {
-        StringBuilder m = new StringBuilder();
-        m
-                .append("\n       FLIGHT BOOKING APP      \n")
-                .append("================================\n")
-                .append(">  1. Register.\n")
-                .append(">  2. Login.\n")
-                .append(">  3. View All Flights.\n")
-                .append(">  4. Search flight.\n")
-                .append(">  5. Exit.\n")
-                .append("================================\n");
+        String m = """
 
-        c.print(m.toString());
+                       FLIGHT BOOKING APP     \s
+                ================================
+                >  1. Register.
+                >  2. Login.
+                >  3. View All Flights.
+                >  4. Search flight.
+                >  5. Exit.
+                ================================
+                """;
+
+        c.print(m);
     }
 
 }

@@ -43,9 +43,7 @@ public class BookingApp {
                 if (u != null) user(u);
             }
             case "3" -> flights.viewingAllFlights();
-            case "4" -> {
-                flights.getFlight();
-            }
+            case "4" -> flights.getFlight();
             case "5" -> {
                 console.print("\nApplication closed...");
                 fb.save();
@@ -70,7 +68,7 @@ public class BookingApp {
             }
             case "4" -> {
                 if (user.getBookings().size() > 0) {
-                    cancelBooking.cancelBooking(user, booking);
+                    cancelBooking.cancelBooking(user);
                 } else console.print("\nNo any booking for cancelling\n");
             }
             case "5" -> {

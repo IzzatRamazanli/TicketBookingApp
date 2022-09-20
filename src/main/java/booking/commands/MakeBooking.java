@@ -17,9 +17,6 @@ public class MakeBooking {
 
     private int bookingID = 1;
 
-    public void setBookingID(int bookingID) {
-        this.bookingID = bookingID;
-    }
 
     public MakeBooking(BookingController controllerB, ViewFlight flight, FlightController controller) {
         this.controllerB = controllerB;

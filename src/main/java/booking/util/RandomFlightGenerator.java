@@ -33,13 +33,12 @@ public class RandomFlightGenerator {
         return LocalTime.of(randomHour, randomMinute);
     }
 
-    private Flight generator(int count) {
+    private Flight generator() {
         Airline airline = randomAirline();
         Cities cityFrom = randomCity();
         Cities cityTo = randomCity();
         LocalDate date = randomDate();
         LocalTime time = randomTime();
-        int id = random.nextInt(count) + 1;
         return new Flight(flightID++, airline, cityFrom, cityTo, date, time);
     }
 
@@ -47,7 +46,7 @@ public class RandomFlightGenerator {
         List<Flight> flights = new ArrayList<>();
         Flight flight;
         for (int i = 0; i < count; i++) {
-            flight = generator(count);
+            flight = generator();
             flights.add(flight);
         }
         return flights;

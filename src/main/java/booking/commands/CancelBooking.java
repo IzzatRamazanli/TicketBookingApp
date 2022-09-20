@@ -4,6 +4,8 @@ import booking.console.IOConsole;
 import booking.controller.BookingController;
 import booking.model.User;
 
+import java.util.Scanner;
+
 
 public class CancelBooking {
     private final BookingController controller;
@@ -13,20 +15,24 @@ public class CancelBooking {
         this.controller = controller;
     }
 
-    public void cancelBooking(User user, MakeBooking booking) {
+    public void cancelBooking(User user) {
         c.print("Your bookings: \n");
         user.getBookings().forEach(System.out::println);
         c.print("\nEnter reservation ID to cancellation: ");
         int id = getId();
-        if (id > 0 && user.getBookings().size() + 1 > id) {
-            if (controller.cancelBooking(controller.getBooking(id), user)) {
-                booking.setBookingID(1);
-                c.print("\nReservation successfully canceled!\n");
-            } else c.print("\nSomething went wrong\n");
+        if (askConfirm()) {
+            if (id > 0 && user.getBookings().size() + 1 > id) {
+                if (controller.cancelBooking(controller.getBooking(id), user)) {
+                    c.print("\nReservation successfully canceled!\n");
+                } else c.print("\nSomething went wrong\n");
+            } else {
+                c.print("Entered ID is not correct!\n");
+                cancelBooking(user);
+            }
         } else {
-            c.print("Entered ID is not correct!\n");
-            cancelBooking(user, booking);
+            c.print("\nReservation cancelling operation denied.");
         }
+
     }
 
     private int getId() {
@@ -44,6 +50,13 @@ public class CancelBooking {
         } while (!isNumber);
 
         return number;
+    }
+
+    private boolean askConfirm() {
+        Scanner sc = new Scanner(System.in);
+        c.print("\nAre you sure about deleting this reservation? 1.Yes 2.No: ");
+        String query = sc.nextLine();
+        return query.equals("1");
     }
 
 
