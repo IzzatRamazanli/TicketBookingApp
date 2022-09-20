@@ -59,7 +59,7 @@ public class MakeBooking {
     private Passenger passengerInfo(int i) {
         String fn = getName(i);
         String sn = getSurname(i);
-        return new Passenger(i - 1, fn, sn);
+        return new Passenger(i, fn, sn);
     }
 
     private String getName(int i) {
