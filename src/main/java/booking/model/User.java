@@ -1,11 +1,14 @@
 package booking.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public record User(int id, String userName, String password) implements Serializable {
+
+    @Serial
     private static final long serialVersionUID = 1L;
     private static List<Booking> bookings;
 

@@ -1,15 +1,14 @@
 package booking.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public record Flight(int id, Airline airline, Cities cityFrom, Cities cityTo, LocalDate date,
                      LocalTime time) implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private static int seats;
