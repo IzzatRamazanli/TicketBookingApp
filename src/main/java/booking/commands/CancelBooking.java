@@ -22,6 +22,7 @@ public class CancelBooking {
         List<Booking> bookings = controller.getAllBookings().stream()
                 .filter(x -> x.user().userName().equals(user.userName())
                         && x.user().password().equals(user.password())).toList();
+
         bookings.forEach(System.out::println);
         c.print("\nEnter reservation ID to cancellation: ");
         int id = getId();
