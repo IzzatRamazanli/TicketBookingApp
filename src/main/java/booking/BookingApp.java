@@ -65,17 +65,13 @@ public class BookingApp {
             case "1" -> flights.viewingAllFlights();
             case "2" -> booking.makeBooking(user);
             case "3" -> {
-                List<Booking> bookings = controllerB.getAllBookings().stream()
-                        .filter(x -> x.user().userName().equals(user.userName())
-                                && x.user().password().equals(user.password())).toList();
+                List<Booking> bookings = getAuthBookings(user);
                 if (bookings.size() > 0) {
                     bookings.forEach(System.out::println);
                 } else console.print("\nYou haven't bookings yet\n");
             }
             case "4" -> {
-                List<Booking> bookings = controllerB.getAllBookings().stream()
-                        .filter(x -> x.user().userName().equals(user.userName())
-                                && x.user().password().equals(user.password())).toList();
+                List<Booking> bookings = getAuthBookings(user);
                 if (bookings.size() > 0) {
                     cancelBooking.cancelBooking(user);
                 } else console.print("\nNo any booking for cancelling\n");
@@ -94,6 +90,12 @@ public class BookingApp {
         while (userStart(user)) {
             if (!userStart(user)) break;
         }
+    }
+
+    private List<Booking> getAuthBookings(User user) {
+        return controllerB.getAllBookings().stream()
+                .filter(x -> x.user().userName().equals(user.userName())
+                        && x.user().password().equals(user.password())).toList();
     }
 
     private UserController configU(FileBase fb) {

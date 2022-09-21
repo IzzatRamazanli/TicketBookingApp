@@ -19,11 +19,10 @@ public class CancelBooking {
 
     public void cancelBooking(User user) {
         c.print("Your bookings: \n");
-        List<Booking> bookings = controller.getAllBookings().stream()
-                .filter(x -> x.user().userName().equals(user.userName())
-                        && x.user().password().equals(user.password())).toList();
 
+        List<Booking> bookings = getAuthBookings(user);
         bookings.forEach(System.out::println);
+
         c.print("\nEnter reservation ID to cancellation: ");
         int id = getId();
         if (askConfirm()) {
@@ -39,6 +38,12 @@ public class CancelBooking {
             c.print("\nReservation cancelling operation denied.");
         }
 
+    }
+
+    private List<Booking> getAuthBookings(User user) {
+        return controller.getAllBookings().stream()
+                .filter(x -> x.user().userName().equals(user.userName())
+                        && x.user().password().equals(user.password())).toList();
     }
 
     private int getId() {
