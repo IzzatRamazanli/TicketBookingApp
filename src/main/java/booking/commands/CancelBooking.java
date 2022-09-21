@@ -60,7 +60,7 @@ public class CancelBooking {
 
     private boolean askConfirm() {
         Scanner sc = new Scanner(System.in);
-        c.print("\nAre you sure about deleting this reservation? 1.Yes 2.No: ");
+        c.print("\nAre you sure about cancelling this reservation? 1.Yes 2.No: ");
         String query = sc.nextLine();
         return query.equals("1");
     }
