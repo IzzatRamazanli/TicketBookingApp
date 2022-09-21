@@ -11,10 +11,13 @@ import booking.dao.implementations.UserDAO;
 import booking.database.FileBase;
 import booking.menu.MainMenu;
 import booking.menu.UserMenu;
+import booking.model.Booking;
 import booking.model.User;
 import booking.service.BookingService;
 import booking.service.FlightService;
 import booking.service.UserService;
+
+import java.util.List;
 
 public class BookingApp {
     private final FileBase fb = new FileBase();
@@ -62,12 +65,18 @@ public class BookingApp {
             case "1" -> flights.viewingAllFlights();
             case "2" -> booking.makeBooking(user);
             case "3" -> {
-                if (user.getBookings().size() > 0) {
-                    user.getBookings().forEach(System.out::println);
+                List<Booking> bookings = controllerB.getAllBookings().stream()
+                        .filter(x -> x.user().userName().equals(user.userName())
+                                && x.user().password().equals(user.password())).toList();
+                if (bookings.size() > 0) {
+                    bookings.forEach(System.out::println);
                 } else console.print("\nYou haven't bookings yet\n");
             }
             case "4" -> {
-                if (user.getBookings().size() > 0) {
+                List<Booking> bookings = controllerB.getAllBookings().stream()
+                        .filter(x -> x.user().userName().equals(user.userName())
+                                && x.user().password().equals(user.password())).toList();
+                if (bookings.size() > 0) {
                     cancelBooking.cancelBooking(user);
                 } else console.print("\nNo any booking for cancelling\n");
             }

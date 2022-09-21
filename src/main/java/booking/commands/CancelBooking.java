@@ -2,8 +2,10 @@ package booking.commands;
 
 import booking.console.IOConsole;
 import booking.controller.BookingController;
+import booking.model.Booking;
 import booking.model.User;
 
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -17,11 +19,14 @@ public class CancelBooking {
 
     public void cancelBooking(User user) {
         c.print("Your bookings: \n");
-        user.getBookings().forEach(System.out::println);
+        List<Booking> bookings = controller.getAllBookings().stream()
+                .filter(x -> x.user().userName().equals(user.userName())
+                        && x.user().password().equals(user.password())).toList();
+        bookings.forEach(System.out::println);
         c.print("\nEnter reservation ID to cancellation: ");
         int id = getId();
         if (askConfirm()) {
-            if (id > 0 && user.getBookings().size() + 1 > id) {
+            if (id > 0 && bookings.stream().anyMatch(x -> x.id() == id)) {
                 if (controller.cancelBooking(controller.getBooking(id), user)) {
                     c.print("\nReservation successfully canceled!\n");
                 } else c.print("\nSomething went wrong\n");
