@@ -4,10 +4,8 @@ import booking.console.IOConsole;
 import booking.controller.BookingController;
 import booking.model.Booking;
 import booking.model.User;
-
 import java.util.List;
 import java.util.Scanner;
-
 
 public class CancelBooking {
     private final BookingController controller;
@@ -69,6 +67,4 @@ public class CancelBooking {
         String query = sc.nextLine();
         return query.equals("1");
     }
-
-
 }
