@@ -86,10 +86,9 @@ public class BookingApp {
         return true;
     }
 
+    @SuppressWarnings("all")
     private void user(User user) {
-        while (userStart(user)) {
-            if (!userStart(user)) break;
-        }
+        while (userStart(user));
     }
 
     private List<Booking> getAuthBookings(User user) {
