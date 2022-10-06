@@ -11,6 +11,7 @@ import java.util.*;
 public class RandomFlightGenerator {
     private static final Random random = new Random();
     private int flightID = 1;
+
     public static Airline randomAirline() {
         return Airline.values()[random.nextInt(Airline.values().length)];
     }
@@ -20,8 +21,7 @@ public class RandomFlightGenerator {
     }
 
     public LocalDate randomDate() {
-        LocalDate start = LocalDate.now();
-        return LocalDate.of(2022, start.getMonth().getValue() + random.nextInt(3) + 1, random.nextInt(28) + 1);
+        return LocalDate.now().plusDays(random.nextInt(30));
     }
 
     public LocalTime randomTime() {
@@ -43,13 +43,13 @@ public class RandomFlightGenerator {
     }
 
     public List<Flight> randomFlights(int count) {
-        List<Flight> flights = new ArrayList<>();
+        Set<Flight> flights = new HashSet<>();
         Flight flight;
         for (int i = 0; i < count; i++) {
             flight = generator();
             flights.add(flight);
         }
-        return flights;
+        return new ArrayList<>(flights);
     }
 
     public List<Flight> sortedFlight(int count) {
