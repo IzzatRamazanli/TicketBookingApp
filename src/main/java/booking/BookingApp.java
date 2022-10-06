@@ -59,7 +59,7 @@ public class BookingApp {
 
     private boolean userStart(User user) {
         UserMenu.display();
-        console.print("\nEnter command ro run -> ");
+        console.print("\nEnter command to run -> ");
         String command = console.readLn();
         switch (command) {
             case "1" -> flights.viewingAllFlights();
